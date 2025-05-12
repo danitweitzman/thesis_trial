@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Shape of Feeling</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.module.js"
+    }
+  }
+  </script>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <div class="logo">
+    <img src="assets/logos/logo-white.svg" alt="The Shape of Feeling" class="logo">
+  </div>
+    <div class="input-section">
+      <div class="input-containerBtn">
+        <button id="startSessionBtn">Start Session</button>
+        <button id="endSessionBtn">End Session</button>
+      </div>
+      <div class="input-container">
+        <input type="text" id="textInput" placeholder="Type your feelings...">
+        <button id="micButton">🎤</button>
+      </div>
+    </div>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
