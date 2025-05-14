@@ -830,6 +830,10 @@ endSessionBtn.addEventListener('click', () => {
 // Initialize UI state
 updateSessionUI();
 
+// Track full dialog and current emotion
+let fullDialog = '';
+let currentEmotion = 'neutrality';
+
 // Debounce function for text input
 function debounce(func, wait) {
   let timeout;
@@ -843,21 +847,33 @@ function debounce(func, wait) {
   };
 }
 
+// Helper to get last 7 words
+function getLast7Words(text) {
+  const words = text.trim().split(/\s+/);
+  return words.slice(-7).join(' ');
+}
+
 // Handle text input
 const debouncedAnalysis = debounce((text) => {
   if (!isSessionActive) return; // Only analyze if session is active
   if (text.length >= 5) {  // Only analyze if text is long enough
-    console.log("Sending text for analysis:", text);
+    // Update full dialog
+    fullDialog = fullDialog ? fullDialog + ' ' + text : text;
+    const latestStatement = getLast7Words(text);
+    console.log("Sending for analysis:", { fullDialog, latestStatement, currentEmotion });
     fetch('/analyze', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ text }),
+      body: JSON.stringify({ fullDialog, latestStatement, currentEmotion }),
     })
     .then(response => response.json())
     .then(data => {
       console.log("Received response:", data);
+      if (data.sentiment) {
+        currentEmotion = data.sentiment;
+      }
     })
     .catch(error => console.error('Error:', error));
   }
@@ -871,6 +887,8 @@ textInput.addEventListener('input', (e) => {
 // Handle incoming sentiment updates
 socket.on('sentiment', (sentiment) => {
   console.log("Received sentiment from socket:", sentiment);
+  // Update currentEmotion
+  currentEmotion = sentiment;
   // Map sentiment to emotion preset
   let emotionPreset;
   switch(sentiment.toLowerCase()) {
@@ -886,7 +904,13 @@ socket.on('sentiment', (sentiment) => {
     case 'anger':
       emotionPreset = 'Anger';
       break;
+    case 'angry':
+      emotionPreset = 'Anger';
+      break;
     case 'sadness':
+      emotionPreset = 'Sadness';
+      break;
+    case 'sad':
       emotionPreset = 'Sadness';
       break;
     case 'excitement':
@@ -941,6 +965,9 @@ socket.on('sentiment', (sentiment) => {
       emotionPreset = 'Boredom';
       break;
     case 'joy':
+      emotionPreset = 'Joy';
+      break;
+    case 'happy':
       emotionPreset = 'Joy';
       break;
     case 'surprise':

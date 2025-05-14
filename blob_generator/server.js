@@ -39,67 +39,44 @@ app.use(express.json());
 // Endpoint to analyze text
 app.post("/analyze", async (req, res) => {
   try {  
-    const { text } = req.body;
-    console.log("Analyzing text:", text);
+    const { fullDialog, latestStatement, currentEmotion } = req.body;
+    console.log("Analyzing dialog:", fullDialog);
+    console.log("Latest statement:", latestStatement);
+    console.log("Current emotion:", currentEmotion);
 
-    // Extract last 7 words
-    const words = text.trim().split(/\s+/);
-    const last7 = words.slice(-7).join(' ');
+    // Compose the prompt for GPT
+    const prompt = `You are a sentiment analyzer. Given the full dialog and the latest statement, determine if the latest statement (in the context of the full dialog) still represents the current emotion: '${currentEmotion}'. If it does, respond with 'no change'. If it is more closely related to one of the following emotions: fear, neutrality, anger, sadness, joy, respond with the most appropriate emotion from this list (use these exact words only: fear, neutrality, anger, sadness, joy). Respond with exactly one of these words, lowercase, no punctuation or additional text.\n\nFull dialog: ${fullDialog}\nLatest statement: ${latestStatement}\nCurrent emotion: ${currentEmotion}`;
 
-    // 1. Analyze the whole text
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
         {
           role: "system",
-          content: "You are a sentiment analyzer. Analyze the emotional tone of the given text and respond with the most appropriate sentiment from the following list ONLY: fear, neutrality, anger, sadness, joy. You must respond with exactly one of these words, lowercase, no punctuation or additional text."
+          content: prompt
         },
         {
           role: "user",
-          content: text
-        }
-      ],
-      temperature: 0.3,
-      max_tokens: 5
-    });
-
-    const overallSentiment = completion.choices[0].message.content.trim().toLowerCase();
-    console.log("Raw GPT response (overall):", completion.choices[0].message.content);
-    console.log("Processed overall sentiment:", overallSentiment);
-
-    // 2. Analyze the last 7 words in context
-    const contextPrompt = `You are a sentiment analyzer. Given the full text and the last 7 words, analyze the emotional tone of the last 7 words in relation to the whole text. Respond with the most appropriate sentiment from the following list ONLY: fear, neutrality, anger, sadness, joy, or 'no change' if the overall sentiment should remain. You must respond with exactly one of these words, lowercase, no punctuation or additional text.\n\nFull text: ${text}\nLast 7 words: ${last7}`;
-
-    const last7Completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content: contextPrompt
-        },
-        {
-          role: "user",
-          content: last7
+          content: latestStatement
         }
       ],
       temperature: 0.3,
       max_tokens: 10
     });
 
-    const last7Sentiment = last7Completion.choices[0].message.content.trim().toLowerCase();
-    console.log("Raw GPT response (last 7):", last7Completion.choices[0].message.content);
-    console.log("Processed last 7 sentiment:", last7Sentiment);
+    const gptResponse = completion.choices[0].message.content.trim().toLowerCase();
+    console.log("Raw GPT response:", completion.choices[0].message.content);
+    console.log("Processed GPT response:", gptResponse);
 
-    // 3. Decide final sentiment
-    let finalSentiment = overallSentiment;
-    if (last7Sentiment !== 'no change' && last7Sentiment !== overallSentiment) {
-      finalSentiment = last7Sentiment;
+    // Decide final emotion
+    let finalEmotion = currentEmotion;
+    if (gptResponse !== 'no change' && gptResponse !== currentEmotion) {
+      finalEmotion = gptResponse;
     }
 
-    // Broadcast the sentiment to all connected clients
-    io.sockets.emit('sentiment', finalSentiment);
+    // Broadcast the emotion to all connected clients
+    io.sockets.emit('sentiment', finalEmotion);
 
-    res.json({ sentiment: finalSentiment });
+    res.json({ sentiment: finalEmotion });
   } catch (error) {
     console.error("Error analyzing text:", error);
     res.status(500).json({ error: "Failed to analyze text" });
