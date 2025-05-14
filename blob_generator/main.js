@@ -1187,24 +1187,41 @@ const micButton = document.getElementById('micButton');
 // Create a new SpeechRecognition object
 const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 
-// Set the language of the recognition
-recognition.lang = 'en-US';
+// Buffer for finalized speech
+let finalTranscript = '';
 
-// Event listeners for the recognition
+// Configure for continuous, in‑flight results
+recognition.lang            = 'en-US';
+recognition.continuous      = true;
+recognition.interimResults  = true;
+
+// Handle both interim and final results
 recognition.onresult = (event) => {
-  const transcript = event.results[0][0].transcript;
-  textInput.value += ` ${transcript}`;
-  debouncedAnalysis(textInput.value); // Trigger emotion analysis
-  recognition.start(); // Restart recognition to keep listening
+  let interimTranscript = '';
+
+  for (let i = event.resultIndex; i < event.results.length; i++) {
+    const res        = event.results[i];
+    const transcript = res[0].transcript;
+
+    if (res.isFinal) {
+      finalTranscript += transcript + ' ';
+      debouncedAnalysis(finalTranscript);
+    } else {
+      interimTranscript += transcript;
+    }
+  }
+
+  // Update the input with committed + live text
+  textInput.value = finalTranscript + interimTranscript;
 };
 
-// Event listeners for the start and end of the recognition
-recognition.onstart = () => micButton.textContent = 'Listening...';
+recognition.onstart = () => {
+  micButton.textContent = 'Listening…';
+};
+
 recognition.onend = () => {
   micButton.textContent = '🎤';
-  if (isSessionActive) {
-    recognition.start(); // Restart recognition if session is active
-  }
+  if (isSessionActive) recognition.start();
 };
 
 micButton.addEventListener('click', () => recognition.start());

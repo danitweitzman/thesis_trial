@@ -41,7 +41,12 @@ app.post("/analyze", async (req, res) => {
   try {  
     const { text } = req.body;
     console.log("Analyzing text:", text);
-    
+
+    // Extract last 7 words
+    const words = text.trim().split(/\s+/);
+    const last7 = words.slice(-7).join(' ');
+
+    // 1. Analyze the whole text
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
@@ -58,14 +63,43 @@ app.post("/analyze", async (req, res) => {
       max_tokens: 5
     });
 
-    const sentiment = completion.choices[0].message.content.trim().toLowerCase();
-    console.log("Raw GPT response:", completion.choices[0].message.content);
-    console.log("Processed sentiment:", sentiment);
-    
+    const overallSentiment = completion.choices[0].message.content.trim().toLowerCase();
+    console.log("Raw GPT response (overall):", completion.choices[0].message.content);
+    console.log("Processed overall sentiment:", overallSentiment);
+
+    // 2. Analyze the last 7 words in context
+    const contextPrompt = `You are a sentiment analyzer. Given the full text and the last 7 words, analyze the emotional tone of the last 7 words in relation to the whole text. Respond with the most appropriate sentiment from the following list ONLY: fear, neutrality, anger, sadness, joy, or 'no change' if the overall sentiment should remain. You must respond with exactly one of these words, lowercase, no punctuation or additional text.\n\nFull text: ${text}\nLast 7 words: ${last7}`;
+
+    const last7Completion = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          role: "system",
+          content: contextPrompt
+        },
+        {
+          role: "user",
+          content: last7
+        }
+      ],
+      temperature: 0.3,
+      max_tokens: 10
+    });
+
+    const last7Sentiment = last7Completion.choices[0].message.content.trim().toLowerCase();
+    console.log("Raw GPT response (last 7):", last7Completion.choices[0].message.content);
+    console.log("Processed last 7 sentiment:", last7Sentiment);
+
+    // 3. Decide final sentiment
+    let finalSentiment = overallSentiment;
+    if (last7Sentiment !== 'no change' && last7Sentiment !== overallSentiment) {
+      finalSentiment = last7Sentiment;
+    }
+
     // Broadcast the sentiment to all connected clients
-    io.sockets.emit('sentiment', sentiment);
-    
-    res.json({ sentiment });
+    io.sockets.emit('sentiment', finalSentiment);
+
+    res.json({ sentiment: finalSentiment });
   } catch (error) {
     console.error("Error analyzing text:", error);
     res.status(500).json({ error: "Failed to analyze text" });
