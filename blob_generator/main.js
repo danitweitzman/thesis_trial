@@ -874,14 +874,14 @@ endSessionBtn.addEventListener('click', () => {
       percentDiv.style.fontWeight = 'bold';
       percentDiv.style.fontSize = '1.2rem';
       percentDiv.style.textAlign = 'left';
-      percentDiv.style.fontFamily = 'monospace';
+      percentDiv.style.fontFamily = "'GT-Planar-Light-Trial', monospace";
       // Label (right)
       const labelDiv = document.createElement('div');
       labelDiv.textContent = emotion.toUpperCase();
       labelDiv.style.fontWeight = 'bold';
       labelDiv.style.fontSize = '1.2rem';
       labelDiv.style.textAlign = 'right';
-      labelDiv.style.fontFamily = 'monospace';
+      labelDiv.style.fontFamily = "'GT-Planar-Light-Trial', monospace";
       labelRow.appendChild(percentDiv);
       labelRow.appendChild(labelDiv);
       // Image
