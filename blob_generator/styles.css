@@ -73,7 +73,7 @@ body {
   font-size: 1.3rem;
   cursor: pointer;
   font-weight: bold;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  box-shadow: none;
 } 
 
 .logo {
@@ -168,10 +168,14 @@ body {
   font-size: 2rem;
   cursor: pointer;
   font-weight: bold;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  box-shadow: none;
   z-index: 2;
 }
 
 .hidden {
   display: none !important;
+}
+
+#sessionSummaryModal .modal-content {
+  background: url('assets/background.png') center center / cover no-repeat;
 }

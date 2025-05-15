@@ -841,6 +841,8 @@ endSessionBtn.addEventListener('click', () => {
   }
   // Filter out 'Neutrality' and 'neutrality'
   const filteredPeriods = emotionPeriods.filter(e => e.emotion.toLowerCase() !== 'neutrality');
+  const emotionImagesRow = document.getElementById('emotionImagesRow');
+  emotionImagesRow.innerHTML = '';
   if (filteredPeriods.length > 0) {
     // Sum durations
     const durations = {};
@@ -850,12 +852,53 @@ endSessionBtn.addEventListener('click', () => {
       durations[period.emotion] = (durations[period.emotion] || 0) + duration;
       totalDuration += duration;
     });
-    // Calculate percentages
+    // Calculate percentages and show images
     const summaryArr = Object.entries(durations).map(([emotion, duration]) => {
       const percent = ((duration / totalDuration) * 100).toFixed(1);
+      // Add image and percent to the row
+      const emotionDiv = document.createElement('div');
+      emotionDiv.style.display = 'flex';
+      emotionDiv.style.flexDirection = 'column';
+      emotionDiv.style.alignItems = 'center';
+      emotionDiv.style.margin = '0 18px';
+      // Row for percent (left) and label (right)
+      const labelRow = document.createElement('div');
+      labelRow.style.display = 'flex';
+      labelRow.style.flexDirection = 'row';
+      labelRow.style.justifyContent = 'space-between';
+      labelRow.style.width = '140px';
+      labelRow.style.marginBottom = '8px';
+      // Percent (left)
+      const percentDiv = document.createElement('div');
+      percentDiv.textContent = percent + '%';
+      percentDiv.style.fontWeight = 'bold';
+      percentDiv.style.fontSize = '1.2rem';
+      percentDiv.style.textAlign = 'left';
+      percentDiv.style.fontFamily = 'monospace';
+      // Label (right)
+      const labelDiv = document.createElement('div');
+      labelDiv.textContent = emotion.toUpperCase();
+      labelDiv.style.fontWeight = 'bold';
+      labelDiv.style.fontSize = '1.2rem';
+      labelDiv.style.textAlign = 'right';
+      labelDiv.style.fontFamily = 'monospace';
+      labelRow.appendChild(percentDiv);
+      labelRow.appendChild(labelDiv);
+      // Image
+      const img = document.createElement('img');
+      img.src = `assets/emotions/${emotion.toUpperCase()}1.png`;
+      img.alt = emotion;
+      img.style.width = '140px';
+      img.style.height = '140px';
+      img.style.objectFit = 'contain';
+      img.style.borderRadius = '0';
+      // No boxShadow
+      emotionDiv.appendChild(labelRow);
+      emotionDiv.appendChild(img);
+      emotionImagesRow.appendChild(emotionDiv);
       return `${emotion}: ${percent}%`;
     });
-    sessionSummaryText.textContent = 'Emotions this session: ' + summaryArr.join(', ');
+    sessionSummaryText.textContent = 'Emotions this session:';
   } else {
     sessionSummaryText.textContent = 'No emotions were detected this session.';
   }
