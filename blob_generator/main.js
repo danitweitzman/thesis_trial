@@ -75,537 +75,987 @@ const EMOTIONS = {
     pointSize: 0.03,
     useTexture: true
   },
-  Anxiety: {
-    amplitude: 0.06,
-    frequency: 5,
-    bloom: 0.05,
-    color: 15204335,
-    modifier: 0,
-    ribAmp: 0,
-    ribFreq: 1,
-    noiseSpeed: 3,
-    rotationSpeed: 0.2,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: true,
-    metalness: 0,
-    roughness: 0,
-    transmission: 0.52,
-    thickness: 0.4,
-    clearcoat: 1,
-    clearcoatRoughness: 0.1,
-    envMapIntensity: 1.2
-  },      
-  Fear: {
-    amplitude: 0.42,
-    frequency: 5,
-    bloom: 0,
-    color: 14217983,
-    modifier: 0,
-    ribAmp: 0.2,
-    ribFreq: 10,
-    noiseSpeed: 0.61,
-    rotationSpeed: 1,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: true,
-    metalness: 0.81,
-    roughness: 0.53,
-    transmission: 0.43,
-    thickness: 0.4,
-    clearcoat: 1,
-    clearcoatRoughness: 1,
-    envMapIntensity: 2
-},
-  Anger: { 
-    amplitude: 0.64, 
-    frequency: 5, 
-    bloom: 0, 
-    color: 12386304, 
-    modifier: 0, 
-    ribAmp: 0, 
-    ribFreq: 1,
-    noiseSpeed: 1.79,
-    rotationSpeed: 0,
-    backgroundColor: 0xb6b69e,
-    metalness: 0.09,
-    roughness: 0,
-    transmission: 0.08,
-    thickness: 2,
-    clearcoat: 1,
-    clearcoatRoughness: 1,
-    envMapIntensity: 2,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: true
+    Anxiety: {
+      amplitude: 0.06,
+      frequency: 5,
+      bloom: 0.05,
+      color: 15204335,
+      modifier: 0,
+      ribAmp: 0,
+      ribFreq: 1,
+      noiseSpeed: 3,
+      rotationSpeed: 0.2,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0,
+      roughness: 0,
+      transmission: 0.52,
+      thickness: 0.4,
+      clearcoat: 1,
+      clearcoatRoughness: 0.1,
+      envMapIntensity: 1.2
+    },      
+    Fear: {
+      amplitude: 0.42,
+      frequency: 5,
+      bloom: 0,
+      color: 14217983,
+      modifier: 0,
+      ribAmp: 0.2,
+      ribFreq: 10,
+      noiseSpeed: 0.61,
+      rotationSpeed: 1,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0.81,
+      roughness: 0.53,
+      transmission: 0.43,
+      thickness: 0.4,
+      clearcoat: 1,
+      clearcoatRoughness: 1,
+      envMapIntensity: 2
   },
-  Sadness: { 
-    amplitude: 0.1, 
-    frequency: 0.82, 
-    bloom: 0.05, 
-    color: 5533570, 
-    modifier: 1, 
-    ribAmp: 0, 
-    ribFreq: 1,
-    noiseSpeed: 0.11,
-    rotationSpeed: 0,
-    backgroundColor: 0xb6b69e,
-    metalness: 0,
-    roughness: 0,
-    transmission: 0,
-    thickness: 0,
-    clearcoat: 1,
-    clearcoatRoughness: 1,
-    envMapIntensity: 0,
-    pointMode: false,
-    pointSize: 0.03,
+    Anger: { 
+      amplitude: 0.64, 
+      frequency: 5, 
+      bloom: 0, 
+      color: 12386304, 
+      modifier: 0, 
+      ribAmp: 0, 
+      ribFreq: 1,
+      noiseSpeed: 1.79,
+      rotationSpeed: 0,
+      backgroundColor: 0xb6b69e,
+      metalness: 0.09,
+      roughness: 0,
+      transmission: 0.08,
+      thickness: 2,
+      clearcoat: 1,
+      clearcoatRoughness: 1,
+      envMapIntensity: 2,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true
+    },
+    Sadness: { 
+      amplitude: 0.1, 
+      frequency: 0.82, 
+      bloom: 0.05, 
+      color: 5533570, 
+      modifier: 1, 
+      ribAmp: 0, 
+      ribFreq: 1,
+      noiseSpeed: 0.11,
+      rotationSpeed: 0,
+      backgroundColor: 0xb6b69e,
+      metalness: 0,
+      roughness: 0,
+      transmission: 0,
+      thickness: 0,
+      clearcoat: 1,
+      clearcoatRoughness: 1,
+      envMapIntensity: 0,
+      pointMode: false,
+      pointSize: 0.03,
+    },
+    Contentment: { 
+      amplitude: 0.28, 
+      frequency: 0.1, 
+      bloom: 0, 
+      color: 16774656, 
+      modifier: 2, 
+      ribAmp: 0.1, 
+      ribFreq: 14.8,
+      noiseSpeed: 0.3,
+      rotationSpeed: 0,
+      backgroundColor: 0xb6b69e,
+      metalness: 0.1,
+      roughness: 0.35,
+      transmission: 0.76,
+      thickness: 0.95,
+      clearcoat: 0,
+      clearcoatRoughness: 0.21,
+      envMapIntensity: 0,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: false
+    },
+    Curiosity: { 
+      amplitude: 0.27, 
+      frequency: 0.28, 
+      bloom: 0, 
+      color: 13428735, 
+      modifier: 2, 
+      ribAmp: 0.8, 
+      ribFreq: 3.4,
+      noiseSpeed: 0.54,
+      rotationSpeed: 0,
+      backgroundColor: 0xb6b69e,
+      metalness: 0.1,
+      roughness: 0.35,
+      transmission: 0.76,
+      thickness: 0.95,
+      clearcoat: 0,
+      clearcoatRoughness: 0.21,
+      envMapIntensity: 0,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: false
+    },
+    Worry: {
+      amplitude: 0.09,
+      frequency: 3.8000000000000003,
+      bloom: 0.05,
+      color: 10464704,
+      modifier: 0,
+      ribAmp: 0,
+      ribFreq: 1,
+      noiseSpeed: 1.73,
+      rotationSpeed: 0,
+      backgroundColor: 0xb6b69e,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0,
+      roughness: 0.38,
+      transmission: 0.85,
+      thickness: 0,
+      clearcoat: 0,
+      clearcoatRoughness: 1,
+      envMapIntensity: 1.2
   },
-  Excitement: { 
-    amplitude: 0.28, 
-    frequency: 0.1, 
-    bloom: 0, 
-    color: 16774656, 
-    modifier: 2, 
-    ribAmp: 0.1, 
-    ribFreq: 14.8,
-    noiseSpeed: 3,
-    rotationSpeed: 0.28,
-    backgroundColor: 0xb6b69e,
-    metalness: 0.1,
-    roughness: 0.35,
-    transmission: 0.76,
-    thickness: 0.95,
-    clearcoat: 0,
-    clearcoatRoughness: 0.21,
-    envMapIntensity: 0,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: false
-  },
-  Curiosity: { 
-    amplitude: 0.27, 
-    frequency: 0.28, 
-    bloom: 0, 
-    color: 13428735, 
-    modifier: 2, 
-    ribAmp: 0.8, 
-    ribFreq: 3.4,
-    noiseSpeed: 0.54,
-    rotationSpeed: 0,
-    backgroundColor: 0xb6b69e,
-    metalness: 0.1,
-    roughness: 0.35,
-    transmission: 0.76,
-    thickness: 0.95,
-    clearcoat: 0,
-    clearcoatRoughness: 0.21,
-    envMapIntensity: 0,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: false
-  },
-  Worry: {
-    amplitude: 0.09,
-    frequency: 3.8000000000000003,
-    bloom: 0.05,
-    color: 10464704,
-    modifier: 0,
-    ribAmp: 0,
-    ribFreq: 1,
-    noiseSpeed: 1.73,
-    rotationSpeed: 0,
-    backgroundColor: 0xb6b69e,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: true,
-    metalness: 0,
-    roughness: 0.38,
-    transmission: 0.85,
-    thickness: 0,
-    clearcoat: 0,
-    clearcoatRoughness: 1,
-    envMapIntensity: 1.2
-}, 
-Overwhelm: {
-    amplitude: 0.19,
-    frequency: 1.09,
-    bloom: 0.02,
-    color: 16742679,
-    modifier: 2,
-    ribAmp: 0.11,
-    ribFreq: 15.8,
-    noiseSpeed: 3,
-    rotationSpeed: 0,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: true,
-    metalness: 0,
-    roughness: 0.25,
-    transmission: 0,
-    thickness: 2,
-    clearcoat: 0,
-    clearcoatRoughness: 0,
-    envMapIntensity: 0
-  },
-  Stress: {
-    amplitude: 0.13,
-    frequency: 0.61,
-    bloom: 0.05,
-    color: 11756347,
-    modifier: 2,
-    ribAmp: 0.15,
-    ribFreq: 15.8,
-    noiseSpeed: 3,
-    rotationSpeed: 0,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: true,
-    metalness: 0,
-    roughness: 0.23,
-    transmission: 0.06,
-    thickness: 2,
-    clearcoat: 0.3,
-    clearcoatRoughness: 1,
-    envMapIntensity: 0
-  },
-  Avoidance: {
-    amplitude: 0.14,
-    frequency: 0.88,
-    bloom: 0.05,
-    color: 6381921,
-    modifier: 1,
-    ribAmp: 0,  
-    ribFreq: 1,
-    noiseSpeed: 0.25,
-    rotationSpeed: 0,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: true,
-    metalness: 0,
-    roughness: 1,
-    transmission: 0.47000000000000003,
-    thickness: 2,
-    clearcoat: 0.3,
-    clearcoatRoughness: 1,
-    envMapIntensity: 0
-  },
-  Dread: {
-    amplitude: 0.32,
-    frequency: 0.8200000000000001,
-    bloom: 0.05,  
-    color: 5531220,
-    modifier: 1,
-    ribAmp: 0,
-    ribFreq: 1,
-    noiseSpeed: 0.15,
-    rotationSpeed: 0.09,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: true,
-    metalness: 0,
-    roughness: 0.41000000000000003,
-    transmission: 0.47000000000000003,
-    thickness: 2,
-    clearcoat: 1,
-    clearcoatRoughness: 0.47000000000000003,
-    envMapIntensity: 2
-  },
-  Vulnerability: {
-    amplitude: 0.11,
-    frequency: 1.09,
-    bloom: 0.05,
-    color: 16770293,
-    modifier: 2,
-    ribAmp: 0.13,
-    ribFreq: 1.1,
-    noiseSpeed: 0,
-    rotationSpeed: 0.09,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: true,
-    metalness: 0,
-    roughness: 0.41000000000000003,
-    transmission: 0.47000000000000003,
-    thickness: 2,
-    clearcoat: 1,
-    clearcoatRoughness: 0.47000000000000003,
-    envMapIntensity: 2
-  },
-  Comparison: {
-    amplitude: 0.26,
-    frequency: 1.31,
-    bloom: 0.05,
-    color: 10178171,
-    modifier: 2,
-    ribAmp: 1,
-    ribFreq: 1,
-    noiseSpeed: 0,
-    rotationSpeed: 0,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: true,
-    metalness: 0,
-    roughness: 0.23,
-    transmission: 1,
-    thickness: 2,
-    clearcoat: 1,
-    clearcoatRoughness: 0.73,
-    envMapIntensity: 2
-  },
-  Admiration: {
-    amplitude: 0,
-    frequency: 0.1,
-    bloom: 0.2,
-    color: 16438703,
-    modifier: 2,
-    ribAmp: 0.49,
-    ribFreq: 1.1,
-    noiseSpeed: 0,
-    rotationSpeed: 0,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: true,
-    metalness: 0,
-    roughness: 0.31,
-    transmission: 0.05,
-    thickness: 2,
-    clearcoat: 0,
-    clearcoatRoughness: 0,
-    envMapIntensity: 0
-  },
-  Reverance: {
-    amplitude: 0,
-    frequency: 0.1,
-    bloom: 0,
-    color: 13290186,
-    modifier: 0,
-    ribAmp: 0,
-    ribFreq: 1,
-    noiseSpeed: 0,
-    rotationSpeed: 0,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: true,
-    metalness: 0,
-    roughness: 0,
-    transmission: 0,
-    thickness: 0,
-    clearcoat: 0.43,
-    clearcoatRoughness: 0.3,
-    envMapIntensity: 0
-  },
-  Envy: {
-    amplitude: 0.29,
-    frequency: 5,
-    bloom: 1,
-    color: 8113990,
-    modifier: 2,
-    ribAmp: 0.68,
-    ribFreq: 1,
-    noiseSpeed: 0,
-    rotationSpeed: 0,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: true,
-    metalness: 0.93,
-    roughness: 0.52,
-    transmission: 0,
-    thickness: 0.87,
-    clearcoat: 1,
-    clearcoatRoughness: 0.17,
-    envMapIntensity: 2
-  },
-  Jealousy: {
-    amplitude: 0.59,
-    frequency: 3.11,
-    bloom: 1,
-    color: 13616709,
-    modifier: 2,
-    ribAmp: 0.5700000000000001,
-    ribFreq: 1.6,
-    noiseSpeed: 0,
-    rotationSpeed: 0,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: true,
-    metalness: 0.66,
-    roughness: 0.02,
-    transmission: 0,
-    thickness: 0,
-    clearcoat: 0,
-    clearcoatRoughness: 0,
-    envMapIntensity: 2
-  },
-  Resentment: {
-    amplitude: 1,
-    frequency: 0.48,
-    bloom: 1,
-    color: 9326929,
-    modifier: 2,
-    ribAmp: 0.49,
-    ribFreq: 1.1,
-    noiseSpeed: 0,
-    rotationSpeed: 0,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: true,
-    metalness: 1,
-    roughness: 0.59,
-    transmission: 0,
-    thickness: 0,
-    clearcoat: 0,
-    clearcoatRoughness: 0,
-    envMapIntensity: 2
-  },
-  Schadenfreude: {
-    amplitude: 1,
-    frequency: 0.1,
-    bloom: 0,
-    color: 7864490,
-    modifier: 2,
-    ribAmp: 0.29,
-    ribFreq: 3.2,
-    noiseSpeed: 0,
-    rotationSpeed: 0,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: true,
-    metalness: 0.14,
-    roughness: 0.21,
-    transmission: 0.5700000000000001,
-    thickness: 2,
-    clearcoat: 1,
-    clearcoatRoughness: 0.33,
-    envMapIntensity: 1.19
-  },
-  Freudenfreude: {
-    amplitude: 0.3,
-    frequency: 1.12,
-    bloom: 1,
-    color: 16757683,
-    modifier: 2,
-    ribAmp: 0.59,
-    ribFreq: 1,
-    noiseSpeed: 0,
-    rotationSpeed: 1,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: true,
-    metalness: 0,
-    roughness: 1,
-    transmission: 0,
-    thickness: 0.87,
-    clearcoat: 1,
-    clearcoatRoughness: 0.17,
-    envMapIntensity: 2
-  },
-  Boredom: {
-    amplitude: 0.1,
-    frequency: 0.8,
-    bloom: 0.05,
-    color: 9529946,
-    modifier: 1,
-    ribAmp: 0,
-    ribFreq: 1,
-    noiseSpeed: 0.11,
-    rotationSpeed: 0,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: true,
-    metalness: 0,
-    roughness: 0,
-    transmission: 0,
-    thickness: 0,
-    clearcoat: 0,
-    clearcoatRoughness: 0,
-    envMapIntensity: 0
-  },
-  Joy: {
-    amplitude: 0.26,
-    frequency: 0.39,
-    bloom: 0.05,
-    color: 16769557,
-    modifier: 0,
-    ribAmp: 0,
-    ribFreq: 1,
-    noiseSpeed: 3,
-    rotationSpeed: 0.32,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: true,
-    metalness: 0.05,
-    roughness: 0,
-    transmission: 0.47000000000000003,
-    thickness: 2,
-    clearcoat: 0,
-    clearcoatRoughness: 0,
-    envMapIntensity: 2
-  },
-  Surprise: {
-    amplitude: 0.26,
-    frequency: 0.39,
-    bloom: 0.05,
-    color: 16757476,
-    modifier: 0,
-    ribAmp: 0,
-    ribFreq: 1,
-    noiseSpeed: 3,
-    rotationSpeed: 0.32,
-    pointMode: false,
-    pointSize: 0.03,
-    useTexture: true,
-    metalness: 0.05,
-    roughness: 0,
-    transmission: 0.47000000000000003,
-    thickness: 2,
-    clearcoat: 0,
-    clearcoatRoughness: 0,
-    envMapIntensity: 2
-  },
-  Love: {
-    amplitude: 0.13,
-    frequency: 0.77,
-    bloom: 0.3,
-    color: 16777215,
-    modifier: 2,
-    ribAmp: 0.11,
-    ribFreq: 1,
-    noiseSpeed: 0.21,
-    rotationSpeed: 0.25,
-    pointMode: true,
-    pointSize: 0.012,
-    useTexture: true,
-    metalness: 0,
-    roughness: 0.59,
-    transmission: 0.04,
-    thickness: 0.4,
-    clearcoat: 1,
-    clearcoatRoughness: 1,
-    envMapIntensity: 0
-  },
-  Disgust: {
-    amplitude: 0.13,
-    frequency: 1.53,
-    bloom: 0,
-    color: 7178064,
-    modifier: 1,
-    ribAmp: 0.15,
-    ribFreq: 1,
-    noiseSpeed: 1.5,
-    rotationSpeed: 0,
-    pointMode: false,
-    pointSize: 0.023,
-    useTexture: true,
-    metalness: 0,
-    roughness: 0.38,
-    transmission: 0.85,
-    thickness: 0,
-    clearcoat: 0,
-    clearcoatRoughness: 1,
-    envMapIntensity: 1.2
-  }
-
-};
+    Vulnerability: {
+      amplitude: 0.11,
+      frequency: 1.09,
+      bloom: 0.05,
+      color: 16770293,
+      modifier: 2,
+      ribAmp: 0.13,
+      ribFreq: 1.1,
+      noiseSpeed: 0,
+      rotationSpeed: 0.09,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0,
+      roughness: 0.41000000000000003,
+      transmission: 0.47000000000000003,
+      thickness: 2,
+      clearcoat: 1,
+      clearcoatRoughness: 0.47000000000000003,
+      envMapIntensity: 2
+    },
+    Gratitude: {
+      amplitude: 0,
+      frequency: 0.1,
+      bloom: 0.2,
+      color: 16438703,
+      modifier: 2,
+      ribAmp: 0.49,
+      ribFreq: 1.1,
+      noiseSpeed: 0,
+      rotationSpeed: 0,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0,
+      roughness: 0.31,
+      transmission: 0.05,
+      thickness: 2,
+      clearcoat: 0,
+      clearcoatRoughness: 0,
+      envMapIntensity: 0
+    },
+    Envy: {
+      amplitude: 0.29,
+      frequency: 5,
+      bloom: 1,
+      color: 8113990,
+      modifier: 2,
+      ribAmp: 0.68,
+      ribFreq: 1,
+      noiseSpeed: 0,
+      rotationSpeed: 0,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0.93,
+      roughness: 0.52,
+      transmission: 0,
+      thickness: 0.87,
+      clearcoat: 1,
+      clearcoatRoughness: 0.17,
+      envMapIntensity: 2
+    },
+    Overwhelm: {
+      amplitude: 0.59,
+      frequency: 3.11,
+      bloom: 1,
+      color: 13616709,
+      modifier: 2,
+      ribAmp: 0.5700000000000001,
+      ribFreq: 1.6,
+      noiseSpeed: 2,
+      rotationSpeed: 0,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0.66,
+      roughness: 0.02,
+      transmission: 0,
+      thickness: 0,
+      clearcoat: 0,
+      clearcoatRoughness: 0,
+      envMapIntensity: 2
+    },
+    Joy: {
+      amplitude: 0.26,
+      frequency: 0.39,
+      bloom: 0.05,
+      color: 16769557,
+      modifier: 0,
+      ribAmp: 0,
+      ribFreq: 1,
+      noiseSpeed: 3,
+      rotationSpeed: 0.32,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0.05,
+      roughness: 0,
+      transmission: 0.47000000000000003,
+      thickness: 2,
+      clearcoat: 0,
+      clearcoatRoughness: 0,
+      envMapIntensity: 2
+    },
+    Surprise: {
+      amplitude: 0.26,
+      frequency: 0.39,
+      bloom: 0.05,
+      color: 16757476,
+      modifier: 0,
+      ribAmp: 0,
+      ribFreq: 1,
+      noiseSpeed: 3,
+      rotationSpeed: 0.32,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0.05,
+      roughness: 0,
+      transmission: 0.47000000000000003,
+      thickness: 2,
+      clearcoat: 0,
+      clearcoatRoughness: 0,
+      envMapIntensity: 2
+    },
+    Love: {
+      amplitude: 0.13,
+      frequency: 0.77,
+      bloom: 0.3,
+      color: 16777215,
+      modifier: 2,
+      ribAmp: 0.11,
+      ribFreq: 1,
+      noiseSpeed: 0.21,
+      rotationSpeed: 0.25,
+      pointMode: true,
+      pointSize: 0.012,
+      useTexture: true,
+      metalness: 0,
+      roughness: 0.59,
+      transmission: 0.04,
+      thickness: 0.4,
+      clearcoat: 1,
+      clearcoatRoughness: 1,
+      envMapIntensity: 0
+    },
+    Guilt: {
+      amplitude: 0.13,
+      frequency: 1.53,
+      bloom: 0,
+      color: 7178064,
+      modifier: 1,
+      ribAmp: 0.15,
+      ribFreq: 1,
+      noiseSpeed: 1.5,
+      rotationSpeed: 0,
+      pointMode: false,
+      pointSize: 0.023,
+      useTexture: true,
+      metalness: 0,
+      roughness: 0.38,
+      transmission: 0.85,
+      thickness: 0,
+      clearcoat: 0,
+      clearcoatRoughness: 1,
+      envMapIntensity: 1.2
+    },
+    Disgust: {
+      amplitude: 0.49,
+      frequency: 1.58,
+      bloom: 0.3,
+      color: 6523970,
+      modifier: 1,
+      ribAmp: 0.2,
+      ribFreq: 10,
+      noiseSpeed: 0.3,
+      rotationSpeed: 0.2,
+      pointMode: true,
+      pointSize: 0.039,
+      useTexture: true,
+      metalness: 0,
+      roughness: 1,
+      transmission: 0,
+      thickness: 0,
+      clearcoat: 1,
+      clearcoatRoughness: 0.07,
+      envMapIntensity: 1.2
+    },
+    Shame: {
+      amplitude: 0.49,
+      frequency: 0.88,
+      bloom: 0.3,
+      color: 6899784,
+      modifier: 1,
+      ribAmp: 0.2,
+      ribFreq: 10,
+      noiseSpeed: 0.3,
+      rotationSpeed: 0.2,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0,
+      roughness: 1,
+      transmission: 0,
+      thickness: 0,
+      clearcoat: 1,
+      clearcoatRoughness: 1,
+      envMapIntensity: 1.2
+    },
+    Embarrassment: {
+      amplitude: 0.08,
+      frequency: 1.26,
+      bloom: 0.05,
+      color: 14596794,
+      modifier: 2,
+      ribAmp: 0,
+      ribFreq: 19,
+      noiseSpeed: 2.2600000000000002,
+      rotationSpeed: 0,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0.05,
+      roughness: 0,
+      transmission: 0.47000000000000003,
+      thickness: 2,
+      clearcoat: 0,
+      clearcoatRoughness: 0,
+      envMapIntensity: 2
+    },
+    Anticipation: {
+      amplitude: 0.16,
+      frequency: 0.28,
+      bloom: 0.05,
+      color: 16757760,
+      modifier: 2,
+      ribAmp: 0.31,
+      ribFreq: 30,
+      noiseSpeed: 3,
+      rotationSpeed: 0,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0.05,
+      roughness: 0,
+      transmission: 0.47000000000000003,
+      thickness: 2,
+      clearcoat: 0,
+      clearcoatRoughness: 0,
+      envMapIntensity: 2
+    },
+    Contempt: {
+      amplitude: 0.4,
+      frequency: 0.6,
+      bloom: 0,
+      color: 7864490,
+      modifier: 2,
+      ribAmp: 0.15,
+      ribFreq: 5,
+      noiseSpeed: 0,
+      rotationSpeed: 0,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0.81,
+      roughness: 0.21,
+      transmission: 0.5700000000000001,
+      thickness: 2,
+      clearcoat: 1,
+      clearcoatRoughness: 0.33,
+      envMapIntensity: 1.19
+    },
+    Compassion: {
+      amplitude: 0.6900000000000001,
+      frequency: 0.72,
+      bloom: 0.05,
+      color: 12901887,
+      modifier: 0,
+      ribAmp: 0.13,
+      ribFreq: 1.1,
+      noiseSpeed: 0,
+      rotationSpeed: 0.09,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0,
+      roughness: 0.41000000000000003,
+      transmission: 0.47000000000000003,
+      thickness: 2,
+      clearcoat: 1,
+      clearcoatRoughness: 0.47000000000000003,
+      envMapIntensity: 2
+    },
+    Affection: {
+      amplitude: 0.2,
+      frequency: 1.36,
+      bloom: 0.05,
+      color: 16756141,
+      modifier: 0,
+      ribAmp: 0,
+      ribFreq: 1,
+      noiseSpeed: 0.28,
+      rotationSpeed: 0,
+      pointMode: true,
+      pointSize: 0.02,
+      useTexture: true,
+      metalness: 0,
+      roughness: 0,
+      transmission: 0.63,
+      thickness: 0.4,
+      clearcoat: 0.88,
+      clearcoatRoughness: 0,
+      envMapIntensity: 1.2
+    },
+    Trust: {
+      amplitude: 0.12,
+      frequency: 0.4,
+      bloom: 0,
+      color: 3289770,
+      modifier: 2,
+      ribAmp: 0.79,
+      ribFreq: 1,
+      noiseSpeed: 0.05,
+      rotationSpeed: 1,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0,
+      roughness: 1,
+      transmission: 0,
+      thickness: 2,
+      clearcoat: 0,
+      clearcoatRoughness: 0,
+      envMapIntensity: 0
+    },
+    Respect: {
+      amplitude: 0.16,
+      frequency: 0.34,
+      bloom: 0,
+      color: 16777215,
+      modifier: 1,
+      ribAmp: 0.2,
+      ribFreq: 10,
+      noiseSpeed: 0.61,
+      rotationSpeed: 1,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0.67,
+      roughness: 0.53,
+      transmission: 0.43,
+      thickness: 0.4,
+      clearcoat: 1,
+      clearcoatRoughness: 1,
+      envMapIntensity: 2
+    },
+    Frustration: {
+      amplitude: 0.84,
+      frequency: 1.2,
+      bloom: 0.02,
+      color: 10173952,
+      modifier: 2,
+      ribAmp: 0.11,
+      ribFreq: 15.8,
+      noiseSpeed: 1.27,
+      rotationSpeed: 0,
+      pointMode: true,
+      pointSize: 0.054,
+      useTexture: true,
+      metalness: 0,
+      roughness: 0.25,
+      transmission: 0,
+      thickness: 2,
+      clearcoat: 0,
+      clearcoatRoughness: 0,
+      envMapIntensity: 0
+    },
+    Dissapointment: {
+      amplitude: 0.18,
+      frequency: 1.47,
+      bloom: 1,
+      color: 14441216,
+      modifier: 1,
+      ribAmp: 0,
+      ribFreq: 1,
+      noiseSpeed: 0.11,
+      rotationSpeed: 0,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0.92,
+      roughness: 0.6900000000000001,
+      transmission: 0,
+      thickness: 0,
+      clearcoat: 0.78,
+      clearcoatRoughness: 0,
+      envMapIntensity: 1.6400000000000001
+    },
+    Acceptance: {
+      amplitude: 0.1,
+      frequency: 0.8,
+      bloom: 0,
+      color: 15400900,
+      modifier: 1,
+      ribAmp: 0,
+      ribFreq: 1,
+      noiseSpeed: 0.11,
+      rotationSpeed: 0,
+      pointMode: true,
+      pointSize: 0.019,
+      useTexture: true,
+      metalness: 0,
+      roughness: 0,
+      transmission: 0,
+      thickness: 0,
+      clearcoat: 0,
+      clearcoatRoughness: 0,
+      envMapIntensity: 0
+    },
+    Nostalgia: {
+      amplitude: 0.07,
+      frequency: 2.18,
+      bloom: 0.16,
+      color: 16119285,
+      modifier: 0,
+      ribAmp: 0.05,
+      ribFreq: 2.4000000000000004,
+      noiseSpeed: 0.51,
+      rotationSpeed: 0.2,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0.05,
+      roughness: 0.68,
+      transmission: 0.14,
+      thickness: 0.8300000000000001,
+      clearcoat: 0.73,
+      clearcoatRoughness: 0.1,
+      envMapIntensity: 1.3800000000000001
+    },
+    Confusion: {
+      amplitude: 0.15,
+      frequency: 3.99,
+      bloom: 0.16,
+      color: 12711873,
+      modifier: 1,
+      ribAmp: 0.05,
+      ribFreq: 2.4000000000000004,
+      noiseSpeed: 0.51,
+      rotationSpeed: 0.2,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0.15,
+      roughness: 0.48,
+      transmission: 0.78,
+      thickness: 0.78,
+      clearcoat: 0.4,
+      clearcoatRoughness: 0.14,
+      envMapIntensity: 0.8200000000000001
+    },
+    Pride: {
+      amplitude: 0.07,
+      frequency: 0.1,
+      bloom: 0.16,
+      color: 16774109,
+      modifier: 2,
+      ribAmp: 0.05,
+      ribFreq: 2.4000000000000004,
+      noiseSpeed: 0.51,
+      rotationSpeed: 0.2,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0.12,
+      roughness: 0.38,
+      transmission: 0.66,
+      thickness: 0.78,
+      clearcoat: 0.4,
+      clearcoatRoughness: 0.14,
+      envMapIntensity: 0.8200000000000001
+    },
+    Relief: {
+      amplitude: 0.07,
+      frequency: 0.1,
+      bloom: 0,
+      color: 4517119,
+      modifier: 2,
+      ribAmp: 0.21,
+      ribFreq: 3.7,
+      noiseSpeed: 0.51,
+      rotationSpeed: 0.2,
+      pointMode: true,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 1,
+      roughness: 0,
+      transmission: 0.14,
+      thickness: 0,
+      clearcoat: 1,
+      clearcoatRoughness: 0,
+      envMapIntensity: 2
+    },
+    Despair: {
+      amplitude: 0.15,
+      frequency: 0.9,
+      bloom: 0,
+      color: 6908265,
+      modifier: 1,
+      ribAmp: 0.21,
+      ribFreq: 3.7,
+      noiseSpeed: 0.51,
+      rotationSpeed: 0.2,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 1,
+      roughness: 0.46,
+      transmission: 0.14,
+      thickness: 0,
+      clearcoat: 1,
+      clearcoatRoughness: 0,
+      envMapIntensity: 0.28
+    },
+    Disappointment: {
+      amplitude: 0.15,
+      frequency: 1.56,
+      bloom: 0,
+      color: 13453575,
+      modifier: 1,
+      ribAmp: 0.21,
+      ribFreq: 3.7,
+      noiseSpeed: 0.51,
+      rotationSpeed: 0.2,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 1,
+      roughness: 0.46,
+      transmission: 0.14,
+      thickness: 0,
+      clearcoat: 0.59,
+      clearcoatRoughness: 0.6,
+      envMapIntensity: 0.6
+    },
+    Awe: {
+      amplitude: 0.59,
+      frequency: 3.11,
+      bloom: 1,
+      color: 60671,
+      modifier: 2,
+      ribAmp: 0.5700000000000001,
+      ribFreq: 1.6,
+      noiseSpeed: 0,
+      rotationSpeed: 0,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0.66,
+      roughness: 0.02,
+      transmission: 0,
+      thickness: 0,
+      clearcoat: 0,
+      clearcoatRoughness: 0,
+      envMapIntensity: 2
+    },
+    Admiration: {
+      amplitude: 0.07,
+      frequency: 0.1,
+      bloom: 0,
+      color: 16770676,
+      modifier: 2,
+      ribAmp: 0.14,
+      ribFreq: 1,
+      noiseSpeed: 0.51,
+      rotationSpeed: 0.2,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 1,
+      roughness: 0,
+      transmission: 0.14,
+      thickness: 0,
+      clearcoat: 1,
+      clearcoatRoughness: 0,
+      envMapIntensity: 2
+    },
+    Stress: {
+      amplitude: 0.5,
+      frequency: 5,
+      bloom: 0,
+      color: 2500298,
+      modifier: 0,
+      ribAmp: 0.2,
+      ribFreq: 10,
+      noiseSpeed: 1.54,
+      rotationSpeed: 1,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true,
+      metalness: 0.81,
+      roughness: 0.53,
+      transmission: 0.43,
+      thickness: 0.4,
+      clearcoat: 1,
+      clearcoatRoughness: 1,
+      envMapIntensity: 2
+    },
+    Excitement: {
+      amplitude: 0.18,
+      frequency: 2.2,
+      bloom: 0.4,
+      color: 0xffa500, // orange
+      modifier: 0,
+      ribAmp: 0.1,
+      ribFreq: 2,
+      noiseSpeed: 1.2,
+      rotationSpeed: 0.5,
+      backgroundColor: 0xb6b69e,
+      metalness: 0.2,
+      roughness: 0.3,
+      transmission: 0.7,
+      thickness: 0.5,
+      clearcoat: 0.3,
+      clearcoatRoughness: 0.2,
+      envMapIntensity: 1.5,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true
+    },
+    Avoidance: {
+      amplitude: 0.09,
+      frequency: 1.1,
+      bloom: 0.1,
+      color: 0x8b8b8b, // gray
+      modifier: 1,
+      ribAmp: 0.05,
+      ribFreq: 1.2,
+      noiseSpeed: 0.3,
+      rotationSpeed: 0.1,
+      backgroundColor: 0xb6b69e,
+      metalness: 0.1,
+      roughness: 0.7,
+      transmission: 0.2,
+      thickness: 0.2,
+      clearcoat: 0.1,
+      clearcoatRoughness: 0.3,
+      envMapIntensity: 1.0,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true
+    },
+    Dread: {
+      amplitude: 0.22,
+      frequency: 2.5,
+      bloom: 0.2,
+      color: 0x2d2d2d, // dark gray
+      modifier: 1,
+      ribAmp: 0.12,
+      ribFreq: 2.5,
+      noiseSpeed: 0.7,
+      rotationSpeed: 0.2,
+      backgroundColor: 0xb6b69e,
+      metalness: 0.3,
+      roughness: 0.8,
+      transmission: 0.1,
+      thickness: 0.3,
+      clearcoat: 0.2,
+      clearcoatRoughness: 0.4,
+      envMapIntensity: 1.1,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true
+    },
+    Comparison: {
+      amplitude: 0.13,
+      frequency: 1.3,
+      bloom: 0.1,
+      color: 0x7fffd4, // aquamarine
+      modifier: 2,
+      ribAmp: 0.08,
+      ribFreq: 1.5,
+      noiseSpeed: 0.5,
+      rotationSpeed: 0.15,
+      backgroundColor: 0xb6b69e,
+      metalness: 0.15,
+      roughness: 0.5,
+      transmission: 0.4,
+      thickness: 0.3,
+      clearcoat: 0.2,
+      clearcoatRoughness: 0.2,
+      envMapIntensity: 1.2,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true
+    },
+    Reverence: {
+      amplitude: 0.15,
+      frequency: 0.9,
+      bloom: 0.3,
+      color: 0x6a5acd, // slate blue
+      modifier: 2,
+      ribAmp: 0.09,
+      ribFreq: 1.7,
+      noiseSpeed: 0.4,
+      rotationSpeed: 0.18,
+      backgroundColor: 0xb6b69e,
+      metalness: 0.18,
+      roughness: 0.4,
+      transmission: 0.5,
+      thickness: 0.4,
+      clearcoat: 0.3,
+      clearcoatRoughness: 0.25,
+      envMapIntensity: 1.3,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true
+    },
+    Jealousy: {
+      amplitude: 0.19,
+      frequency: 1.7,
+      bloom: 0.2,
+      color: 0x228b22, // forest green
+      modifier: 2,
+      ribAmp: 0.11,
+      ribFreq: 1.9,
+      noiseSpeed: 0.6,
+      rotationSpeed: 0.22,
+      backgroundColor: 0xb6b69e,
+      metalness: 0.2,
+      roughness: 0.6,
+      transmission: 0.3,
+      thickness: 0.3,
+      clearcoat: 0.2,
+      clearcoatRoughness: 0.3,
+      envMapIntensity: 1.2,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true
+    },
+    Resentment: {
+      amplitude: 0.17,
+      frequency: 1.5,
+      bloom: 0.15,
+      color: 0x8b0000, // dark red
+      modifier: 1,
+      ribAmp: 0.1,
+      ribFreq: 1.6,
+      noiseSpeed: 0.5,
+      rotationSpeed: 0.19,
+      backgroundColor: 0xb6b69e,
+      metalness: 0.17,
+      roughness: 0.7,
+      transmission: 0.2,
+      thickness: 0.2,
+      clearcoat: 0.15,
+      clearcoatRoughness: 0.35,
+      envMapIntensity: 1.1,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true
+    },
+    Schadenfreude: {
+      amplitude: 0.16,
+      frequency: 1.4,
+      bloom: 0.18,
+      color: 0xff69b4, // hot pink
+      modifier: 2,
+      ribAmp: 0.09,
+      ribFreq: 1.8,
+      noiseSpeed: 0.7,
+      rotationSpeed: 0.21,
+      backgroundColor: 0xb6b69e,
+      metalness: 0.16,
+      roughness: 0.5,
+      transmission: 0.4,
+      thickness: 0.3,
+      clearcoat: 0.2,
+      clearcoatRoughness: 0.2,
+      envMapIntensity: 1.2,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true
+    },
+    Freudenfreude: {
+      amplitude: 0.14,
+      frequency: 1.2,
+      bloom: 0.22,
+      color: 0x00ced1, // dark turquoise
+      modifier: 2,
+      ribAmp: 0.07,
+      ribFreq: 1.4,
+      noiseSpeed: 0.6,
+      rotationSpeed: 0.17,
+      backgroundColor: 0xb6b69e,
+      metalness: 0.14,
+      roughness: 0.4,
+      transmission: 0.5,
+      thickness: 0.4,
+      clearcoat: 0.25,
+      clearcoatRoughness: 0.18,
+      envMapIntensity: 1.2,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true
+    },
+    Boredom: {
+      amplitude: 0.08,
+      frequency: 0.7,
+      bloom: 0.05,
+      color: 0xcccccc, // light gray
+      modifier: 0,
+      ribAmp: 0.03,
+      ribFreq: 1.1,
+      noiseSpeed: 0.2,
+      rotationSpeed: 0.05,
+      backgroundColor: 0xb6b69e,
+      metalness: 0.08,
+      roughness: 0.8,
+      transmission: 0.1,
+      thickness: 0.1,
+      clearcoat: 0.05,
+      clearcoatRoughness: 0.4,
+      envMapIntensity: 0.8,
+      pointMode: false,
+      pointSize: 0.03,
+      useTexture: true
+    }
+  };
 
 const params = {
   preset: 'Neutrality',
@@ -852,10 +1302,9 @@ endSessionBtn.addEventListener('click', () => {
       durations[period.emotion] = (durations[period.emotion] || 0) + duration;
       totalDuration += duration;
     });
-    // Calculate percentages and show images
-    const summaryArr = Object.entries(durations).map(([emotion, duration]) => {
+    // Calculate percentages and build emotionDivs array
+    const emotionDivs = Object.entries(durations).map(([emotion, duration]) => {
       const percent = ((duration / totalDuration) * 100).toFixed(1);
-      // Add image and percent to the row
       const emotionDiv = document.createElement('div');
       emotionDiv.style.display = 'flex';
       emotionDiv.style.flexDirection = 'column';
@@ -895,9 +1344,27 @@ endSessionBtn.addEventListener('click', () => {
       // No boxShadow
       emotionDiv.appendChild(labelRow);
       emotionDiv.appendChild(img);
-      emotionImagesRow.appendChild(emotionDiv);
-      return `${emotion}: ${percent}%`;
+      return emotionDiv;
     });
+    // Split into rows if needed
+    if (emotionDivs.length > 6) {
+      const firstRow = document.createElement('div');
+      firstRow.style.display = 'flex';
+      firstRow.style.justifyContent = 'center';
+      firstRow.style.alignItems = 'flex-end';
+      emotionDivs.slice(0, 6).forEach(div => firstRow.appendChild(div));
+      const secondRow = document.createElement('div');
+      secondRow.style.display = 'flex';
+      secondRow.style.justifyContent = 'center';
+      secondRow.style.alignItems = 'flex-end';
+      secondRow.style.marginTop = '24px';
+      emotionDivs.slice(6).forEach(div => secondRow.appendChild(div));
+      emotionImagesRow.appendChild(firstRow);
+      emotionImagesRow.appendChild(secondRow);
+    } else {
+      // Single row as before
+      emotionDivs.forEach(div => emotionImagesRow.appendChild(div));
+    }
     sessionSummaryText.textContent = 'Emotions this session:';
   } else {
     sessionSummaryText.textContent = 'No emotions were detected this session.';
@@ -989,29 +1456,25 @@ socket.on('sentiment', (sentiment) => {
   // Map sentiment to emotion preset
   let emotionPreset;
   switch(sentiment.toLowerCase()) {
-    case 'fear':
-      emotionPreset = 'Fear';
+    case 'neutrality':
+      emotionPreset = 'Neutrality';
       break;
     case 'anxiety':
       emotionPreset = 'Anxiety';
       break;
-    case 'neutrality':
-      emotionPreset = 'Neutrality';
+    case 'fear':
+      emotionPreset = 'Fear';
       break;
     case 'anger':
-      emotionPreset = 'Anger';
-      break;
     case 'angry':
       emotionPreset = 'Anger';
       break;
     case 'sadness':
-      emotionPreset = 'Sadness';
-      break;
     case 'sad':
       emotionPreset = 'Sadness';
       break;
-    case 'excitement':
-      emotionPreset = 'Excitement';
+    case 'contentment':
+      emotionPreset = 'Contentment';
       break;
     case 'curiosity':
       emotionPreset = 'Curiosity';
@@ -1019,62 +1482,93 @@ socket.on('sentiment', (sentiment) => {
     case 'worry':
       emotionPreset = 'Worry';
       break;
-    case 'stress':
-      emotionPreset = 'Stress';
-      break;
-    case 'overwhelm':
-      emotionPreset = 'Overwhelm';
-      break;
-    case 'avoidance':
-      emotionPreset = 'Avoidance';
-      break;
-    case 'dread':
-      emotionPreset = 'Dread';
-      break;
     case 'vulnerability':
       emotionPreset = 'Vulnerability';
       break;
-    case 'comparison':
-      emotionPreset = 'Comparison';
-      break; 
-    case 'admiration':
-      emotionPreset = 'Admiration';
-      break;
-    case 'reverence':
-      emotionPreset = 'Reverence';
+    case 'gratitude':
+      emotionPreset = 'Gratitude';
       break;
     case 'envy':
       emotionPreset = 'Envy';
       break;
-    case 'jealousy':
-      emotionPreset = 'Jealousy';
-      break;
-    case 'resentment':
-      emotionPreset = 'Resentment';
-      break;
-    case 'schadenfreude':
-      emotionPreset = 'Schadenfreude';
-      break;
-    case 'freudenfreude':
-      emotionPreset = 'Freudenfreude';
-      break;
-    case 'boredom':
-      emotionPreset = 'Boredom';
+    case 'overwhelm':
+      emotionPreset = 'Overwhelm';
       break;
     case 'joy':
-      emotionPreset = 'Joy';
-      break;
     case 'happy':
       emotionPreset = 'Joy';
       break;
     case 'surprise':
       emotionPreset = 'Surprise';
       break;
+    case 'love':
+      emotionPreset = 'Love';
+      break;
+    case 'guilt':
+      emotionPreset = 'Guilt';
+      break;
     case 'disgust':
       emotionPreset = 'Disgust';
       break;
-    case 'love':
-      emotionPreset = 'Love';
+    case 'shame':
+      emotionPreset = 'Shame';
+      break;
+    case 'embarrassment':
+      emotionPreset = 'Embarrassment';
+      break;
+    case 'anticipation':
+      emotionPreset = 'Anticipation';
+      break;
+    case 'contempt':
+      emotionPreset = 'Contempt';
+      break;
+    case 'compassion':
+      emotionPreset = 'Compassion';
+      break;
+    case 'affection':
+      emotionPreset = 'Affection';
+      break;
+    case 'trust':
+      emotionPreset = 'Trust';
+      break;
+    case 'respect':
+      emotionPreset = 'Respect';
+      break;
+    case 'frustration':
+      emotionPreset = 'Frustration';
+      break;
+    case 'dissapointment':
+      emotionPreset = 'Dissapointment';
+      break;
+    case 'acceptance':
+      emotionPreset = 'Acceptance';
+      break;
+    case 'nostalgia':
+      emotionPreset = 'Nostalgia';
+      break;
+    case 'confusion':
+      emotionPreset = 'Confusion';
+      break;
+    case 'pride':
+      emotionPreset = 'Pride';
+      break;
+    case 'relief':
+      emotionPreset = 'Relief';
+      break;
+    case 'despair':
+      emotionPreset = 'Despair';
+      break;
+    case 'disappointment':
+      emotionPreset = 'Disappointment';
+      break;
+    case 'awe':
+      emotionPreset = 'Awe';
+      break;
+    case 'admiration':
+      emotionPreset = 'Admiration';
+      break;
+    case 'stress':
+      emotionPreset = 'Stress';
       break;
     default:
       console.log("No matching emotion found for sentiment:", sentiment);
