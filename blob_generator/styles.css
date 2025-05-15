@@ -121,6 +121,7 @@ body {
 }
 
 .modal-content {
+  position: relative;
   background: #fff;
   padding: 40px 60px;
   border-radius: 12px;
@@ -192,4 +193,13 @@ body {
 
 #sessionSummaryModal .modal-content {
   background: url('assets/background.png') center center / cover no-repeat;
+}
+#sessionSummaryModal .modal-content, 
+#sessionSummaryModal .modal-content * {
+  font-family: 'GT-Planar-Light-Trial', sans-serif !important;
+}
+
+#sessionSummaryModal .modal-content div[style*='font-size:1.2rem'],
+#sessionSummaryModal .modal-content div[style*='font-size: 1.2rem'] {
+  font-size: 0.9rem !important;
 }
