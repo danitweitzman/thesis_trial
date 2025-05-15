@@ -790,45 +790,100 @@ const socket = io();  // Using the globally available io from the CDN script
 let isSessionActive = false;
 let sessionEmotions = [];
 
+// Show modal on load
+const startSessionModal = document.getElementById('startSessionModal');
 const startSessionBtn = document.getElementById('startSessionBtn');
 const endSessionBtn = document.getElementById('endSessionBtn');
-const textInput = document.getElementById('textInput');
 
-function updateSessionUI() {
-  if (isSessionActive) {
-    textInput.disabled = false;
-    startSessionBtn.disabled = true;
-    endSessionBtn.disabled = false;
-    textInput.placeholder = "Type your feelings...";
-  } else {
-    textInput.disabled = true;
-    startSessionBtn.disabled = false;
-    endSessionBtn.disabled = true;
-    textInput.placeholder = "Start a session to type...";
-    textInput.value = '';
-  }
-}
+const logoDiv = document.querySelector('.logo');
+// Hide logo and end session button by default
+logoDiv.classList.add('hidden');
+endSessionBtn.classList.add('hidden');
 
 startSessionBtn.addEventListener('click', () => {
+  startSessionModal.style.display = 'none';
   isSessionActive = true;
   sessionEmotions = [];
   updateSessionUI();
+  recognition.start(); // Start mic automatically
+  // Show logo and end session button
+  logoDiv.classList.remove('hidden');
+  endSessionBtn.classList.remove('hidden');
 });
+
+// Only show modal on load
+window.addEventListener('DOMContentLoaded', () => {
+  startSessionModal.style.display = 'flex';
+  isSessionActive = false;
+  updateSessionUI();
+});
+
+const sessionSummaryModal = document.getElementById('sessionSummaryModal');
+const sessionSummaryText = document.getElementById('sessionSummaryText');
+const closeSummaryModal = document.getElementById('closeSummaryModal');
 
 endSessionBtn.addEventListener('click', () => {
   isSessionActive = false;
   updateSessionUI();
   applyPreset('Neutrality'); // Reset to neutral shape
   recognition.stop(); // Stop recognition when session ends
-  if (sessionEmotions.length > 0) {
-    alert('Emotions this session:\n' + sessionEmotions.join(', '));
-  } else {
-    alert('No emotions were detected this session.');
+  // Hide logo and end session button
+  logoDiv.classList.add('hidden');
+  endSessionBtn.classList.add('hidden');
+  // Close the last period
+  const now = Date.now();
+  if (lastEmotion !== null && lastEmotionStart !== null) {
+    emotionPeriods.push({
+      emotion: lastEmotion,
+      start: lastEmotionStart,
+      end: now
+    });
   }
+  // Filter out 'Neutrality' and 'neutrality'
+  const filteredPeriods = emotionPeriods.filter(e => e.emotion.toLowerCase() !== 'neutrality');
+  if (filteredPeriods.length > 0) {
+    // Sum durations
+    const durations = {};
+    let totalDuration = 0;
+    filteredPeriods.forEach(period => {
+      const duration = period.end - period.start;
+      durations[period.emotion] = (durations[period.emotion] || 0) + duration;
+      totalDuration += duration;
+    });
+    // Calculate percentages
+    const summaryArr = Object.entries(durations).map(([emotion, duration]) => {
+      const percent = ((duration / totalDuration) * 100).toFixed(1);
+      return `${emotion}: ${percent}%`;
+    });
+    sessionSummaryText.textContent = 'Emotions this session: ' + summaryArr.join(', ');
+  } else {
+    sessionSummaryText.textContent = 'No emotions were detected this session.';
+  }
+  sessionSummaryModal.style.display = 'flex';
+  // Reset for next session
+  emotionPeriods = [];
+  lastEmotion = null;
+  lastEmotionStart = null;
 });
 
-// Initialize UI state
-updateSessionUI();
+closeSummaryModal.addEventListener('click', () => {
+  sessionSummaryModal.style.display = 'none';
+  startSessionModal.style.display = 'flex';
+  sessionEmotions = [];
+  isSessionActive = false;
+  updateSessionUI();
+  // Hide logo and end session button (will be shown again on next start)
+  logoDiv.classList.add('hidden');
+  endSessionBtn.classList.add('hidden');
+});
+
+function updateSessionUI() {
+  if (isSessionActive) {
+    endSessionBtn.disabled = false;
+  } else {
+    endSessionBtn.disabled = true;
+  }
+}
 
 // Track full dialog and current emotion
 let fullDialog = '';
@@ -879,12 +934,11 @@ const debouncedAnalysis = debounce((text) => {
   }
 }, 500);  // 500ms delay
 
-textInput.addEventListener('input', (e) => {
-  const text = e.target.value;
-  debouncedAnalysis(text);
-});
-
 // Handle incoming sentiment updates
+let emotionPeriods = [];
+let lastEmotion = null;
+let lastEmotionStart = null;
+
 socket.on('sentiment', (sentiment) => {
   console.log("Received sentiment from socket:", sentiment);
   // Update currentEmotion
@@ -986,6 +1040,23 @@ socket.on('sentiment', (sentiment) => {
   }
   
   console.log("Mapped to emotion preset:", emotionPreset);
+  // Track emotion periods (exclude repeats)
+  const now = Date.now();
+  if (lastEmotion !== null && lastEmotionStart !== null) {
+    // Only push if emotion actually changed
+    if (lastEmotion !== emotionPreset) {
+      emotionPeriods.push({
+        emotion: lastEmotion,
+        start: lastEmotionStart,
+        end: now
+      });
+      lastEmotion = emotionPreset;
+      lastEmotionStart = now;
+    }
+  } else {
+    lastEmotion = emotionPreset;
+    lastEmotionStart = now;
+  }
   // Apply the emotion preset
   applyPreset(emotionPreset);
   if (!emotionPreset) return;
@@ -1208,8 +1279,6 @@ const saveControls = {
     emotionNameController.updateDisplay();
   },
 };
-
-const micButton = document.getElementById('micButton');
 
 // Create a new SpeechRecognition object
 const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();

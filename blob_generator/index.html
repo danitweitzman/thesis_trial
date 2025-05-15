@@ -14,19 +14,26 @@
   <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
+  <div id="startSessionModal" class="modal">
+    <div class="modal-content instructions-modal">
+      <img src="assets/instructions/instructions.png" alt="Instructions" class="instructions-img">
+      <button id="startSessionBtn" class="overlay-btn">Start Session</button>
+    </div>
+  </div>
+  <div id="sessionSummaryModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span id="closeSummaryModal" style="position:absolute;top:10px;right:20px;font-size:2rem;cursor:pointer;">&times;</span>
+      <div id="sessionSummaryText" style="margin-top:30px;font-size:1.2rem;"></div>
+    </div>
+  </div>
+  <div class="input-section">
+    <div class="input-containerBtn">
+      <button id="endSessionBtn">End Session</button>
+    </div>
+  </div>
   <div class="logo">
     <img src="assets/logos/logo-white.svg" alt="The Shape of Feeling" class="logo">
   </div>
-    <div class="input-section">
-      <div class="input-containerBtn">
-        <button id="startSessionBtn">Start Session</button>
-        <button id="endSessionBtn">End Session</button>
-      </div>
-      <div class="input-container">
-        <input type="text" id="textInput" placeholder="Type your feelings...">
-        <button id="micButton">🎤</button>
-      </div>
-    </div>
-    <script type="module" src="main.js"></script>
+  <script type="module" src="main.js"></script>
 </body>
 </html>
